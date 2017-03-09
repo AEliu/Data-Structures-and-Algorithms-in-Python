@@ -1,4 +1,4 @@
-# exercises for data structures and algorithms in python
+# Exercises for data structures and algorithms in python
 
 ---
 ## ch01
