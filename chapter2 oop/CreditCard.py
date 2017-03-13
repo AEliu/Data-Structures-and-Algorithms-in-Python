@@ -50,3 +50,34 @@ class CreditCard:
     def make_payment(self, amount):
         """Process customer payment that reduces balance"""
         self._balance -= amount
+
+class PredatoryCreditCard(CreditCard):
+    """An extension to CreditCard that compounds interest and fees."""
+
+    def __len__(self, customer, bank, acnt, limit, apr):
+        """Create a new prdatory credit card instance.
+
+        The initial balance is zero.
+
+        apr annual percentage rate(e.g., 0.0825 for 8.25% APR)
+        """
+        super().__init__(customer, bank, acnt, limit)
+        self._apr = apr
+
+    def charge(self, price):
+        """Charge given price to the card, assuming sufficient credit limit.
+
+        Return True if charge was processed.
+        Return False and assess 5$ fee if charge is denied.
+        """
+        success = super().charge(price)
+        if not success:
+            self._balance += 5
+        return success
+
+    def process_month(self):
+        """Assess monthly interest on outstanding balance."""
+        if self._balance > 0:
+            # if positive balance, convert APR to monthly multiplicative factor
+            monthly_factor = pow(1 + self._apr, 1/12)
+            self._balance *= monthly_factor
