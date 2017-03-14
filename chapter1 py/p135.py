@@ -10,3 +10,4 @@ def birthday_generate(n):
 if __name__ == '__main__':
     for i in birthday_generate(30):
         print(i)
+        

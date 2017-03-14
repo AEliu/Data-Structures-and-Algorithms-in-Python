@@ -7,4 +7,4 @@ def arrchar(s):
 
 if __name__ == '__main__':
     s = 'catdog'
-
+    
